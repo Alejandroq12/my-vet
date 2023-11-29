@@ -36,5 +36,5 @@ CREATE TABLE specializations (vet_id INT NOT NULL, species_id INT NOT NULL, PRIM
 
 CREATE TABLE visits (animal_id INT NOT NULL, vet_id INT NOT NULL, visit_date DATE NOT NULL, PRIMARY KEY (animal_id, vet_id, visit_date), FOREIGN KEY (animal_id) REFERENCES animals (id), FOREIGN KEY (vet_id) REFERENCES vets (id));
 
--- Add an email column to your owners table
+-- Add an email column to the owners table
 ALTER TABLE owners ADD COLUMN email VARCHAR(120);
