@@ -45,5 +45,9 @@ CREATE TABLE animal_visit_summary (animal_id INT PRIMARY KEY, visits_total INT);
 -- Create a summary table to store pre-calculated totals
 CREATE TABLE vet_visit_summary AS SELECT vet_id, COUNT(*) AS total_visits, MAX(date_of_visit) AS last_visit FROM visits GROUP BY vet_id;
 
--- Create index
+-- Create index for vet_id
 CREATE INDEX idx_vet_visit_summary_vet_id ON vet_visit_summary(vet_id);
+
+-- Create inde for owbers email
+CREATE INDEX idx_email ON owners (email);
+
