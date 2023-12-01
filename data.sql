@@ -65,3 +65,16 @@ VALUES
 (10, 3, '2020-05-24'),
 (10, 1, '2021-01-11');
 COMMIT;
+
+BEGIN;
+-- This will add 3.594.280 visits considering there are 10 animals, 4 vets, and it will use around ~84.000 timestamps
+INSERT INTO visits (animal_id, vet_id, date_of_visit) SELECT * FROM (SELECT id FROM animals) animal_ids, (SELECT id FROM vets) vets_ids, generate_series('1980-01-01'::timestamp, '2021-01-01', '4 hours') visit_timestamp;
+
+-- This will add 2.500.000 owners with full_name = 'Owner <X>' and email = 'owner_<X>@email.com' (~2min approx.)
+insert into owners (full_name, email) select 'Owner ' || generate_series(1,2500000), 'owner_' || generate_series(1,2500000) || '@mail.com';
+
+-- Insert data intothe populate table
+INSERT INTO animal_visit_summary (animal_id, visits_total) SELECT animal_id, COUNT(*) FROM visits GROUP BY animal_id;
+
+INSERT INTO vet_id_two_visits(animal_id, visits_total) SELECT animal_id, COUNT(*) FROM visits GROUP BY animal_id;
+
