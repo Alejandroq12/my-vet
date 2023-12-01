@@ -72,3 +72,9 @@ INSERT INTO visits (animal_id, vet_id, date_of_visit) SELECT * FROM (SELECT id F
 
 -- This will add 2.500.000 owners with full_name = 'Owner <X>' and email = 'owner_<X>@email.com' (~2min approx.)
 insert into owners (full_name, email) select 'Owner ' || generate_series(1,2500000), 'owner_' || generate_series(1,2500000) || '@mail.com';
+
+-- Insert data intothe populate table
+INSERT INTO animal_visit_summary (animal_id, visits_total) SELECT animal_id, COUNT(*) FROM visits GROUP BY animal_id;
+
+-- Analyze query performance
+EXPLAIN ANALYZE SELECT visits_total FROM animal_visit_summary WHERE animal_id = 4;
