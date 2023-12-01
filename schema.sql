@@ -34,4 +34,20 @@ CREATE TABLE vets (id SERIAL PRIMARY KEY, name VARCHAR(50) NOT NULL, age INT NOT
 
 CREATE TABLE specializations (vet_id INT NOT NULL, species_id INT NOT NULL, PRIMARY KEY (vet_id, species_id), FOREIGN KEY (vet_id) REFERENCES vets (id), FOREIGN KEY (species_id) REFERENCES species (id));
 
-CREATE TABLE visits (animal_id INT NOT NULL, vet_id INT NOT NULL, visit_date DATE NOT NULL, PRIMARY KEY (animal_id, vet_id, visit_date), FOREIGN KEY (animal_id) REFERENCES animals (id), FOREIGN KEY (vet_id) REFERENCES vets (id));
+CREATE TABLE visits (animal_id INT NOT NULL, vet_id INT NOT NULL, date_of_visit DATE NOT NULL, PRIMARY KEY (animal_id, vet_id, date_of_visit), FOREIGN KEY (animal_id) REFERENCES animals (id), FOREIGN KEY (vet_id) REFERENCES vets (id));
+
+-- Add an email column to the owners table
+ALTER TABLE owners ADD COLUMN email VARCHAR(120);
+
+-- Create a summary table to store pre-calculated totals
+CREATE TABLE animal_visit_summary (animal_id INT PRIMARY KEY, visits_total INT);
+
+-- Create a summary table to store pre-calculated totals
+CREATE TABLE vet_visit_summary AS SELECT vet_id, COUNT(*) AS total_visits, MAX(date_of_visit) AS last_visit FROM visits GROUP BY vet_id;
+
+-- Create index for vet_id
+CREATE INDEX idx_vet_visit_summary_vet_id ON vet_visit_summary(vet_id);
+
+-- Create inde for owbers email
+CREATE INDEX idx_email ON owners (email);
+
