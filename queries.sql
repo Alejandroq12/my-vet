@@ -124,3 +124,7 @@ WHERE visits.vet_id = (SELECT id FROM vets WHERE name = 'Maisy Smith')
 GROUP BY species.name
 ORDER BY COUNT(*) DESC
 LIMIT 1;
+
+-- Analyze query performance
+EXPLAIN ANALYZE SELECT visits_total FROM animal_visit_summary WHERE animal_id = 4;
+EXPLAIN ANALYZE SELECT * FROM vet_visit_summary WHERE vet_id = 2; 
