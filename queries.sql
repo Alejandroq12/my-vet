@@ -128,3 +128,4 @@ LIMIT 1;
 -- Analyze query performance
 EXPLAIN ANALYZE SELECT visits_total FROM animal_visit_summary WHERE animal_id = 4;
 EXPLAIN ANALYZE SELECT * FROM vet_visit_summary WHERE vet_id = 2; 
+EXPLAIN ANALYZE SELECT * FROM owners where email = 'owner_18327@mail.com';
