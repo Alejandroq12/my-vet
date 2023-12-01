@@ -1,36 +1,52 @@
 /* Database schema to keep the structure of entire database. */
 
-CREATE TABLE animals (
-  id SERIAL PRIMARY KEY,
-  name VARCHAR(50) NOT NULL,
-  date_of_birth DATE NOT NULL,
-  escape_attempts INT NOT NULL,
-  neutered BOOLEAN NOT NULL,
-  weight_kg DECIMAL(5,2) NOT NULL
+CREATE TABLE owners(
+  id INT GENERATED ALWAYS AS IDENTITY,
+  full_name VARCHAR(20),
+  age INT,
+  PRIMARY KEY(id)
 );
 
-ALTER TABLE animals ADD species VARCHAR(50);
-
-CREATE TABLE owners (
-  id SERIAL PRIMARY KEY,
-  full_name VARCHAR(50) NOT NULL,
-  age INT NOT NULL
+CREATE TABLE species(
+  id INT GENERATED ALWAYS AS IDENTITY,
+  name VARCHAR(20),
+  PRIMARY KEY(id)
 );
 
-CREATE TABLE species (
-  id SERIAL PRIMARY KEY,
-  name VARCHAR(50) NOT NULL
+CREATE TABLE animals(
+  id INT GENERATED ALWAYS AS IDENTITY,
+  name VARCHAR(20),
+  date_of_birth DATE,
+  escape_attempts INT,
+  neutered BOOLEAN,
+  weight_kg DECIMAL,
+  species_id INT REFERENCES species(id),
+  owner_id INT REFERENCES owners(id),
+  PRIMARY KEY(id)
 );
 
-BEGIN;
-ALTER TABLE animals DROP COLUMN species;
-ALTER TABLE animals ADD COLUMN species_id INT;
-ALTER TABLE animals ADD FOREIGN KEY(species_id) REFERENCES species(id);
-ALTER TABLE animals ADD COLUMN owner_id INT;
-ALTER TABLE animals ADD FOREIGN KEY(owner_id) REFERENCES owners(id);
-COMMIT;
+CREATE TABLE vets(
+  id INT GENERATED ALWAYS AS IDENTITY,
+  name VARCHAR(20),
+  age INT,
+  date_of_graduation DATE,
+  PRIMARY KEY(id)
+);
 
-CREATE TABLE vets (id SERIAL PRIMARY KEY, name VARCHAR(50) NOT NULL, age INT NOT NULL, date_of_graduation DATE NOT NULL);
+CREATE TABLE specializations(
+  id INT GENERATED ALWAYS AS IDENTITY,
+  species_id INT REFERENCES species(id),
+  vet_id INT REFERENCES vets(id),
+  PRIMARY KEY(id)
+);
+
+CREATE TABLE visits(
+  id INT GENERATED ALWAYS AS IDENTITY,
+  animal_id INT REFERENCES animals(id),
+  vet_id INT REFERENCES vets(id),
+  date_of_visit DATE,
+  PRIMARY KEY(id)
+);
 
 CREATE TABLE specializations (vet_id INT NOT NULL, species_id INT NOT NULL, PRIMARY KEY (vet_id, species_id), FOREIGN KEY (vet_id) REFERENCES vets (id), FOREIGN KEY (species_id) REFERENCES species (id));
 
