@@ -1,5 +1,4 @@
 /* Database schema to keep the structure of entire database. */
-
 CREATE TABLE owners(
   id INT GENERATED ALWAYS AS IDENTITY,
   full_name VARCHAR(20),
@@ -47,10 +46,6 @@ CREATE TABLE visits(
   date_of_visit DATE,
   PRIMARY KEY(id)
 );
-
-CREATE TABLE specializations (vet_id INT NOT NULL, species_id INT NOT NULL, PRIMARY KEY (vet_id, species_id), FOREIGN KEY (vet_id) REFERENCES vets (id), FOREIGN KEY (species_id) REFERENCES species (id));
-
-CREATE TABLE visits (animal_id INT NOT NULL, vet_id INT NOT NULL, date_of_visit DATE NOT NULL, PRIMARY KEY (animal_id, vet_id, date_of_visit), FOREIGN KEY (animal_id) REFERENCES animals (id), FOREIGN KEY (vet_id) REFERENCES vets (id));
 
 -- Add an email column to the owners table
 ALTER TABLE owners ADD COLUMN email VARCHAR(120);
