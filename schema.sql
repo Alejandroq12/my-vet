@@ -42,4 +42,8 @@ ALTER TABLE owners ADD COLUMN email VARCHAR(120);
 -- Create a summary table to store pre-calculated totals
 CREATE TABLE animal_visit_summary (animal_id INT PRIMARY KEY, visits_total INT);
 
--- 
+-- Create a summary table to store pre-calculated totals
+CREATE TABLE vet_visit_summary AS SELECT vet_id, COUNT(*) AS total_visits, MAX(date_of_visit) AS last_visit FROM visits GROUP BY vet_id;
+
+-- Create index
+CREATE INDEX idx_vet_visit_summary_vet_id ON vet_visit_summary(vet_id);
