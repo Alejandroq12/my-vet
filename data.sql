@@ -76,5 +76,5 @@ insert into owners (full_name, email) select 'Owner ' || generate_series(1,25000
 -- Insert data intothe populate table
 INSERT INTO animal_visit_summary (animal_id, visits_total) SELECT animal_id, COUNT(*) FROM visits GROUP BY animal_id;
 
--- Analyze query performance
-EXPLAIN ANALYZE SELECT visits_total FROM animal_visit_summary WHERE animal_id = 4;
+INSERT INTO vet_id_two_visits(animal_id, visits_total) SELECT animal_id, COUNT(*) FROM visits GROUP BY animal_id;
+
