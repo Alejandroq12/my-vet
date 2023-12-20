@@ -1,6 +1,6 @@
 <a name="readme-top"></a>
 <div align="center">
-    <img src="logo.png" alt="main-logo" width="500"  height="auto" />
+    <img src="logo-julio.png" alt="main-logo" width="500"  height="auto" />
   <br/>
   <h3><b>My Vet</b></h3>
 </div>
@@ -31,6 +31,11 @@
 # 📖 My Vet Database <a name="about-project"></a>
 
 **My Vet Database Database** is a PostgreSQL database designed to streamline record-keeping in veterinary clinics. It efficiently manages vital information about pet patients, including their names, birth dates, weight, neutering status, and any instances of escape attempts. This system simplifies the task of tracking and accessing pet records, aiding clinic staff in better analysis and reporting. Overall, it enhances the clinic’s operational effectiveness and contributes to improved care for pets.
+<div align="center">
+  <b>Database Schema</b>
+    <img src="logo.png" alt="main-logo" width="500"  height="auto" />
+  <br/>
+</div>
 
 ## 🛠 Built With <a name="built-with"></a>
 
