@@ -1,3 +1,10 @@
+<a name="readme-top"></a>
+<div align="center">
+    <img src="logo.png" alt="main-logo" width="500"  height="auto" />
+  <br/>
+  <h3><b>My Vet</b></h3>
+</div>
+
 <!-- TABLE OF CONTENTS -->
 # 📗 Table of Contents
 
