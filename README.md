@@ -33,6 +33,7 @@
 **My Vet Database Database** is a PostgreSQL database designed to streamline record-keeping in veterinary clinics. It efficiently manages vital information about pet patients, including their names, birth dates, weight, neutering status, and any instances of escape attempts. This system simplifies the task of tracking and accessing pet records, aiding clinic staff in better analysis and reporting. Overall, it enhances the clinic’s operational effectiveness and contributes to improved care for pets.
 <div align="center">
   <b>Database Schema</b>
+  <br/>
     <img src="logo.png" alt="main-logo" width="500"  height="auto" />
   <br/>
 </div>
